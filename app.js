@@ -6,6 +6,8 @@ window.addEventListener('load', () => {
   );
   let temperatureDegree = document.querySelector('.temperature-degree');
   let locationTimezone = document.querySelector('.location-timezone');
+  let temperatureSection = document.querySelector('.temperature');
+  let temperatureSpan = document.querySelector('.temperature span');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       long = position.coords.longitude;
@@ -25,14 +27,16 @@ window.addEventListener('load', () => {
           temperatureDegree.textContent = temp;
           temperatureDescription.textContent = description;
           locationTimezone.textContent = data.name;
+
+          // cel ra fan interchange garne
+          temperatureSection.addEventListener('click', () => {
+            if (temperatureSpan.textContent === 'F') {
+              temperatureSpan.textContent = 'c';
+            } else {
+              temperatureSpan.textContent = 'F';
+            }
+          });
         });
     });
-  } else {
-    h1.textContent = 'hey your browser doesnot support geolocation';
-  }
-
-  function setIcons(icon,iconID){
-      const skycons = new skycons({color:"white"};)
-      const currentIcon = 
   }
 });
